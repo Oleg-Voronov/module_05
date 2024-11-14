@@ -1,0 +1,36 @@
+from random import randint, choice
+
+L_ = 16 # максимум этажей
+N_ = 128 # максимум домов
+
+class House:
+    def __init__(self, name, number_of_floors):
+        self.name = name
+        self.number_of_floors = number_of_floors
+        self.pr_inf()
+
+    def pr_inf(self):
+        print(f'Дом {self.name} с {self.number_of_floors} этажами ')
+
+    def go_to(self, floor):
+        print(f'Сгоняем до {floor}-го этажа?')
+        if floor < 1 or floor > self.number_of_floors:
+            print(f'Такого этажа № {floor} не существует')
+        else:
+            for i in range(1,floor+1):
+                print(i)
+
+streets = ('Жердева', 'Бабушкино', 'Смолина', 'Пушкина', 'Ленина','Цивелёва') # названия улиц
+
+def rand_address(street_name): # случайный адресок
+    return street_name + ' ' + str(randint(1,N_)), randint(2,L_)
+
+h2 = House(*rand_address(choice(streets)))
+h2.go_to(randint(-1,L_))
+
+#h1 = House('Жердева 116', 5)
+#h1.go_to(4)
+#h1.go_to(-3)
+#h1.go_to(11)
+
+
