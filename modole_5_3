@@ -1,0 +1,360 @@
+from random import randint, choice
+
+L_ = 16 # максимум этажей
+N_ = 128 # максимум домов
+Err_ = "Не тот тип переменной"
+
+class House:
+    def __init__(self, name, number_of_floors):
+        self.name = name
+        self.number_of_floors = number_of_floors
+
+    def __len__(self):
+        return self.number_of_floors
+
+    def __str__(self):
+        s = f'Название дома - {self.name}, количество этажей - {self.number_of_floors}'
+        return s
+
+  #--------
+    # ==
+    def __eq__(self,other):
+        if isinstance(other,House):
+            return self.number_of_floors == other.number_of_floors
+        else:
+            return Err_
+    # <
+    def __lt__(self, other):
+        if isinstance(other, House):
+            return self.number_of_floors < other.number_of_floors
+        else:
+            return Err_
+    # >
+    def __gt__(self,other):
+        if isinstance(other, House):
+            return self.number_of_floors == other.number_of_floors
+        else:
+            return Err_
+    # !=
+    def __ne__(self,other):
+        if isinstance(other,House):
+            return self.number_of_floors != other.number_of_floors
+        else:
+            return Err_
+    # <=
+    def __le__(self,other):
+        if isinstance(other,House):
+            return self.number_of_floors <= other.number_of_floors
+        else:
+            return Err_
+    # >=
+    def __ge__(self,other):
+        if isinstance(other,House):
+            return self.number_of_floors >= other.number_of_floors
+        else:
+            return Err_
+  #------------
+    # + сложение
+    def __add__(self,other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors + other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors + other
+            return self
+        else:
+            return Err_
+    def __iadd__(self,other):
+        if isinstance(other, House):
+            self.number_of_floors = self.number_of_floors + other.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = self.number_of_floors + other
+            return self
+        else:
+            return Err_
+    def __radd__(self,other):
+        if isinstance(other, House):
+            self.number_of_floors = self.number_of_floors + other.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = self.number_of_floors + other
+            return self
+        else:
+            return Err_
+
+    # - вычитание
+    def __sub__(self,other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors - other.number_of_floors
+            if self.number_of_floors <= 0: print('Преезжаем в подземку')
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors - other
+            if self.number_of_floors <= 0: print('Преезжаем в подземку')
+            return self
+        else:
+            return Err_
+    def __isub__(self,other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors - other.number_of_floors
+            if self.number_of_floors <= 0: print('Преезжаем в подземку')
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors - other
+            if self.number_of_floors <= 0: print('Преезжаем в подземку')
+            return self
+        else:
+            return Err_
+    def __rsub__(self,other):
+        if isinstance(other,House):
+            self.number_of_floors = other.number_of_floors - self.number_of_floors
+            if self.number_of_floors <= 0: print('Преезжаем в подземку')
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors =other - self.number_of_floors
+            if self.number_of_floors <= 0: print('Преезжаем в подземку')
+            return self
+        else:
+            return Err_
+
+    # * умножение
+    def __mul__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors * other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors * other
+            return self
+        else:
+            return Err_
+    def __imul__(self, other):
+        if isinstance(other, House):
+            self.number_of_floors = self.number_of_floors * other.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = self.number_of_floors * other
+            return self
+        else:
+            return Err_
+    def __rmul__(self, other):
+        if isinstance(other, House):
+            self.number_of_floors = self.number_of_floors * other.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = self.number_of_floors * other
+            return self
+        else:
+            return Err_
+
+    # ** возведение в степень
+    def __pow__(self,other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors ** other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors ** other
+            return self
+        else:
+            return Err_
+    def __ipow__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors ** other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors ** other
+            return self
+        else:
+            return Err_
+    def __rpow__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = other.number_of_floors ** self.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = other ** self.number_of_floors
+            return self
+        else:
+            return Err_
+
+    # // целочисленне деление
+    def __floordiv__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors // other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors // other
+            return self
+        else:
+            return Err_
+
+    def __ifloordiv__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors // other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors // other
+            return self
+        else:
+            return Err_
+
+    def __rfloordiv__(self, other):
+        if isinstance(other, House):
+            self.number_of_floors = other.number_of_floors // self.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = other // self.number_of_floors
+            return self
+        else:
+            return Err_
+
+    # % остаток от деления
+    def __mod__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors % other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors % other
+            return self
+        else:
+            return Err_
+    def __imod__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors % other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors % other
+            return self
+        else:
+            return Err_
+    def __rmod__(self, other):
+        if isinstance(other, House):
+            self.number_of_floors = other.number_of_floors % self.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = other % self.number_of_floors
+            return self
+        else:
+            return Err_
+
+    # / деление - сделал ЦЕЛОЧИСЛЕННЫМ
+    def __truediv__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors // other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors // other
+            return self
+        else:
+            return Err_
+
+    def __itruediv__(self, other):
+        if isinstance(other,House):
+            self.number_of_floors = self.number_of_floors // other.number_of_floors
+            return self
+        elif isinstance(other,int):
+            self.number_of_floors = self.number_of_floors // other
+            return self
+        else:
+            return Err_
+
+    def __rtruediv__(self, other):
+        if isinstance(other, House):
+            self.number_of_floors = other.number_of_floors // self.number_of_floors
+            return self
+        elif isinstance(other, int):
+            self.number_of_floors = other // self.number_of_floors
+            return self
+        else:
+            return Err_
+ #--------------------------------------------------------
+    def pr_inf(self):
+        print(f'Дом {self.name} с {self.number_of_floors} этажами ')
+
+    def go_to(self, floor):
+        print(f'Сгоняем до {floor}-го этажа?')
+        if floor < 1 or floor > self.number_of_floors:
+            print(f'Такого этажа № {floor} не существует')
+        else:
+            for i in range(1,floor+1):
+                print(i)
+
+streets = ('Жердева', 'Бабушкино', 'Смолина', 'Пушкина', 'Ленина','Цивелёва') # названия улиц
+
+def rand_address(street_name): # случайный адресок
+    return street_name + ' ' + str(randint(1,N_)), randint(2,L_)
+
+#h01 = House(*rand_address(choice(streets)))
+#h01.pr_inf()
+#h01.go_to(randint(-1,L_))
+
+h1 = House(*rand_address(choice(streets)))
+h2 = House(*rand_address(choice(streets)))
+
+print(h1)
+print(h2)
+print(len(h1))
+print(len(h2))
+print('--------------------')
+
+# h1 = House('ЖК Эльбрус', 10)
+# h2 = House('ЖК Акация', 20)
+
+print(h1)
+print(h2)
+print(h1 == h2) # __eq__
+h1 = h1 + 10 # __add__
+print(h1)
+print(h1 == h2)
+h1 += 10 # __iadd__
+print(h1)
+h2 = 10 + h2 # __radd__
+print(h2)
+print(h1 > h2) # __gt__
+print(h1 >= h2) # __ge__
+print(h1 < h2) # __lt__
+print(h1 <= h2) # __le__
+print(h1 != h2) # __ne__
+
+
+#
+# h1=h1-3
+# print(h1)
+# h1 -=3
+# print(h1)
+# h2=100-h2
+# print(h2)
+
+
+#h1=h1*3
+#print(h1)
+#h1 *=3
+#print(h1)
+#h2=100*h2
+#print(h2)
+
+#h1 = House('Жердева 116', 5)
+#h1.pr_inf()
+#h1 = h1 ** 2
+#h1 = 2 ** h1
+#h1 **=2
+#h1.pr_inf()
+
+#h1=h1 // 3
+#print(h1)
+#h1 //=3
+#print(h1)
+#h2=100 // h2
+#print(h2)
+
+#print(h1 % 3)
+#h1 %=3
+#print(h1)
+#h2=100 % h2
+#print(h2)
+
+#h1=h1 / 3
+#print(h1)
+#h1 /=3
+#print(h1)
+#h2=100 / h2
+#print(h2)
