@@ -83,7 +83,7 @@ class UrTube: # users, videos, current_uses
                 bool_ = False
                 print('Вам нет 18 лет, пожалуйста покиньте страницу')
             if bool_:
-                for i in range(0,t+1):
+                for i in range(1,t+1):
                     print(i,end=' ')
                     sleep(1)
                 print('Конец видео')
